@@ -1,0 +1,12 @@
+from django.db import models
+
+
+class BlacklistedToken(models.Model):
+    jti = models.CharField(max_length=255, unique=True)
+    blacklisted_at = models.DateTimeField(auto_now_add=True)
+    token = models.TextField()
+    class Meta:
+        app_label = "users"
+
+    def __str__(self):
+        return f"Blacklisted {self.jti}"
